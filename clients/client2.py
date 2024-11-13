@@ -7,7 +7,7 @@ import time
 
 # Server connection configuration
 HOST = 'localhost'
-#HOST = 'ip here'
+HOST = '10.112.25.175'
 PORT = 12345
 
 # Game state
