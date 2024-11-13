@@ -6,7 +6,7 @@ import time
 
 # Server connection configuration
 HOST = 'localhost'
-HOST = '10.112.25.175'
+#HOST = 'server ip here'
 PORT = 12345
 
 # Game state
@@ -27,10 +27,10 @@ OTHER_PLAYER_COLOR = (128, 128, 128)  # Gray
 def display_positions():
     screen.fill((0, 0, 0))  # Clear screen with black background
     
-    print(str(positions.items()))
+    print(str(positions.items())) # Print dict for test purposes
     # Draw each player as a rectangle
     for pid, data in positions.items():
-        print("pid: " + str(pid) + ", " + "player_id: " + str(player_id))
+        print("pid: " + str(pid) + ", " + "player_id: " + str(player_id)) # Print some player data for test purposes
         # Check if this player is the local player
         position = data['position']
         if str(pid) == str(player_id):
@@ -68,7 +68,7 @@ def listen_for_updates(client_socket):
 
 # Send movement commands to the server
 def send_move(client_socket, direction):
-    print("player id: " + str(player_id)+ ", " + "direction: " + str(direction))
+    print("player id: " + str(player_id)+ ", " + "direction: " + str(direction)) # Print some player data for test purposes
     if player_id is not None:  # Ensure player_id is set
         move_command = json.dumps({"move": direction, "player_id": player_id})
         client_socket.sendall(move_command.encode())

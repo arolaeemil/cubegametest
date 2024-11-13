@@ -5,7 +5,7 @@ import time
 
 # Server configurations
 HOST = 'localhost'
-HOST = '10.112.25.175'
+#HOST = 'server ip here'
 PORT = 12345
 
 # Game state and connected clients
@@ -51,6 +51,7 @@ def handle_client(client_socket):
                     players[player_id]['last_direction'] = command['move']
                     
                     # Broadcast updated positions to all clients
+                    print(players) # Print the dict for test purposes
                     broadcast(json.dumps({"players": players}))
 
     except (ConnectionResetError, json.JSONDecodeError):
@@ -62,7 +63,6 @@ def handle_client(client_socket):
         clients.remove((client_socket, player_id))
         client_socket.close()
         print(f"Player {player_id} connection closed.")
-        
         # Broadcast updated player list to remaining clients
         broadcast(json.dumps({"players": players}))
 
